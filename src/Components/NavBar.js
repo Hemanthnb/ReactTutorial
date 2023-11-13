@@ -2,8 +2,34 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 export default function NavBar(props) {
+  // const [navbarClass, setNavbarClass] = useState('navbar navbar-expand-lg navbar-dark bg-dark');
+const dark='navbar navbar-expand-lg navbar-dark bg-dark'
+const light='navbar navbar-expand-lg navbar-light bg-light'
+  // if(props.darkmode){
+  //   setNavbarClass('navbar navbar-expand-lg navbar-light bg-light')
+  // }
+  // if(props.lightmode){
+
+  //   // const navbar = document.querySelector('.navbar');
+    // setNavbarClass('navbar navbar-expand-lg navbar-light bg-light')
+    // if (navbar) {
+    //   // const classNames = Array.from(navbar.classList);
+    //   // console.log(classNames);
+
+    // setNavbarClass((prevClass) => {
+      // Toggle between different class names based on the current class
+    //   return prevClass === 'navbar navbar-expand-lg navbar-light bg-light'
+    //     ? 'navbar navbar-expand-lg navbar-dark bg-dark'
+    //     : 'navbar navbar-expand-lg navbar-light bg-light';
+    // });
+
+    // }
+    // navbar.className="navbar navbar-expand-lg navbar-light bg-light"
+// }
+
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className={props.darkmode?dark:light}>
   <div className="container-fluid">
     <a className="navbar-brand" href="/">{props.NavBarTitle}</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
