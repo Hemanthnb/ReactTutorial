@@ -2,8 +2,25 @@ import React,{useState} from "react"
 
 let upperCount=0,lowerCount=0
 export default function Form(props){
+    let obj={
+        color:"black",
+        backgroundColor:"white"
+    }
 
-    const[text,setText]=useState("Enter text here2")
+    if(props.darkmode){
+        obj={
+            color:"white",
+            backgroundColor:"black"
+        } 
+    }
+    else if(!props.darkmode){
+        obj={
+            color:"black",
+        backgroundColor:"white"
+        }
+    }
+
+    const[text,setText]=useState("Enter text here...")
 
     const setCounts=()=>{
         TotalUpperCase()
@@ -58,11 +75,11 @@ export default function Form(props){
     <div className="mb-3">
     <h1>{props.textAreaTitle}</h1>
   <label htmlFor="myBox" className="form-label"></label>
-  <textarea className="form-control" id="myBox" rows="10" cols={"10"} value={text} onChange={onChangingValue}></textarea>
+  <textarea className="form-control" id="myBox" rows="10" cols={"10"} value={text} onChange={onChangingValue} style={obj}></textarea>
   <br/>
   <button type="button" className="btn btn-primary" onClick={changeToUpper}>Change to upperCase</button>
   <button type="button" className="btn btn-primary" style={{marginLeft:"10px"}} onClick={changeToLower}>
-  Change to upperCase
+  Change to LowerCase
 </button>
 <button type="button" className="btn btn-danger" style={{marginLeft:"10px"}} onClick={clearTextArea}>
   Clear Text

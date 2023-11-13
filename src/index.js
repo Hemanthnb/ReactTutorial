@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import NavBarRC,{TextAreaRC,JsonFileRC} from './App';
+// import NavBarRC,{TextAreaRC,JsonFileRC} from './App';
+import { TextAreaRC } from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <NavBarRC/>
+    {/* <NavBarRC/> */}
     <TextAreaRC/>
     <JsonFileRC/>
   </React.StrictMode>
