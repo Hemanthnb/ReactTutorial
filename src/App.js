@@ -22,41 +22,68 @@ import { useState } from 'react';
 // }
 
 
+
 export function TextAreaRC() {
   
-  const [darkmode,setdarkmode]=useState(false)
+// const [darkmode,setdarkmode]=useState(false)
+const [mode,setmode]=useState('light')
 
-  const SetdarkMode=(event)=>{
-    let str=event.target.innerText;
-    if(str==='Dark'){
+  const changeMode=(event)=>{
+    
+    console.log("My name is Hemnth")
+
+    
+    if(mode==='light'){
       const body=document.body;
       body.style.backgroundColor='black'
       body.style.color='white'
-
-      setdarkmode(true)
-
+      
+      setmode('dark')
       event.target.innerText='Light'
-      event.target.className = 'btn btn-light'
     }
-    else if(str==='Light'){
+
+    else if(mode==='dark'){
       const body=document.body;
       body.style.backgroundColor='white'
       body.style.color='black'
-
-      setdarkmode(false)
-
+      setmode('light')
       event.target.innerText='Dark'
-      event.target.className = 'btn btn-dark'
+
     }
   }
+
+  
+  // const SetdarkMode=(event)=>{
+  //   let str=event.target.innerText;
+  //   if(str==='Dark'){
+  //     const body=document.body;
+  //     body.style.backgroundColor='black'
+  //     body.style.color='white'
+
+  //     setdarkmode(true)
+
+  //     event.target.innerText='Light'
+  //     event.target.className = 'btn btn-light'
+  //   }
+  //   else if(str==='Light'){
+  //     const body=document.body;
+  //     body.style.backgroundColor='white'
+  //     body.style.color='black'
+
+  //     setdarkmode(false)
+
+  //     event.target.innerText='Dark'
+  //     event.target.className = 'btn btn-dark'
+  //   }
+  // }
 
 
 
   return (<>
-    <NavBar NavBarTitle="Text-Utils" link="https://www.google.com/" darkmode={darkmode}/>
+    <NavBar NavBarTitle="Text-Utils" link="https://www.google.com/" mode={mode} changeMode={changeMode}/>
     <div className="container">
-    <Form textAreaTitle="Enter your text to analyze"  darkmode={darkmode}/>
-    <button type="button" className="btn btn-dark" onClick={SetdarkMode}>Dark</button>
+    <Form textAreaTitle="Enter your text to analyze" mode={mode} />
+    {/* <button type="button" className="btn btn-dark" onClick={SetdarkMode}>Dark</button> */}
     </div>
     </>
   )

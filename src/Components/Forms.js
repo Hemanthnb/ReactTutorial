@@ -7,17 +7,29 @@ export default function Form(props){
         backgroundColor:"white"
     }
 
-    if(props.darkmode){
+    // if(props.darkmode){
+    //     obj={
+    //         color:"white",
+    //         backgroundColor:"black"
+    //     } 
+    // }
+
+    // else if(!props.darkmode){
+    //     obj={
+    //         color:"black",
+    //     backgroundColor:"white"
+    //     }
+    // }
+
+    if(props.mode==='light'){
         obj={
-            color:"white",
-            backgroundColor:"black"
-        } 
+        color:"black",
+        backgroundColor:"white"}
     }
-    else if(!props.darkmode){
+    else{
         obj={
-            color:"black",
-        backgroundColor:"white"
-        }
+        color:"white",
+        backgroundColor:"black"}
     }
 
     const[text,setText]=useState("Enter text here...")
@@ -67,7 +79,16 @@ export default function Form(props){
         setText("")
     }
 
+    const copyText=()=>
+    {
+        let box=document.getElementById('myBox');
+        box.select()
+        navigator.clipboard.writeText(box.value)
 
+        // Or we can do like this in a easy way 
+        // let str=text
+        // navigator.clipboard.writeText(str)
+    }
     setCounts()
     
     return(
@@ -83,6 +104,9 @@ export default function Form(props){
 </button>
 <button type="button" className="btn btn-danger" style={{marginLeft:"10px"}} onClick={clearTextArea}>
   Clear Text
+  </button>
+<button type="button" className="btn btn-primary" style={{marginLeft:"10px"}} onClick={copyText}>
+  Copy Text
 </button>
 
 </div>
