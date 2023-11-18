@@ -7,17 +7,29 @@ export default function Form(props){
         backgroundColor:"white"
     }
 
-    if(props.darkmode){
+    // if(props.darkmode){
+    //     obj={
+    //         color:"white",
+    //         backgroundColor:"black"
+    //     } 
+    // }
+
+    // else if(!props.darkmode){
+    //     obj={
+    //         color:"black",
+    //     backgroundColor:"white"
+    //     }
+    // }
+
+    if(props.mode==='light'){
         obj={
-            color:"white",
-            backgroundColor:"black"
-        } 
+        color:"black",
+        backgroundColor:"white"}
     }
-    else if(!props.darkmode){
+    else{
         obj={
-            color:"black",
-        backgroundColor:"white"
-        }
+        color:"white",
+        backgroundColor:"black"}
     }
 
     const[text,setText]=useState("Enter text here...")
@@ -28,14 +40,16 @@ export default function Form(props){
     }
 
     
-    const changeToUpper=()=>{
+    const changeToUpper=(event)=>{
         let upper=text.toUpperCase()
         setText(upper)
+        props.showAlert(event.target.innerText)
     }
 
-    const changeToLower=()=>{
+    const changeToLower=(event)=>{
         let lower=text.toLowerCase()
         setText(lower)
+        props.showAlert(event.target.innerText)
     }
 
     
@@ -60,14 +74,29 @@ export default function Form(props){
     }
     const onChangingValue=(event)=>{
         setText(event.target.value)
-        console.log(text)
     }
 
-    const clearTextArea=()=>{
+    const clearTextArea=(event)=>{
         setText("")
+        props.showAlert(event.target.innerText)
     }
 
+    const copyText=(event)=>
+    {
+        if(text.length===0){
+            props.showAlert("empty")
+        }
+        else{
+        let box=document.getElementById('myBox');
+        box.select()
+        navigator.clipboard.writeText(box.value)
+        props.showAlert(event.target.innerText)
+        }
 
+        // Or we can do like this in a easy way 
+        // let str=text
+        // navigator.clipboard.writeText(str)
+    }
     setCounts()
     
     return(
@@ -83,6 +112,9 @@ export default function Form(props){
 </button>
 <button type="button" className="btn btn-danger" style={{marginLeft:"10px"}} onClick={clearTextArea}>
   Clear Text
+  </button>
+<button type="button" className="btn btn-primary" style={{marginLeft:"10px"}} onClick={copyText}>
+  Copy Text
 </button>
 
 </div>

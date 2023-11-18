@@ -10,7 +10,7 @@ root.render(
   <React.StrictMode>
     {/* <NavBarRC/> */}
     <TextAreaRC/>
-    <JsonFileRC/>
+    {/* <JsonFileRC/> */}
   </React.StrictMode>
 );
 
