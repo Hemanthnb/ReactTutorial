@@ -40,14 +40,16 @@ export default function Form(props){
     }
 
     
-    const changeToUpper=()=>{
+    const changeToUpper=(event)=>{
         let upper=text.toUpperCase()
         setText(upper)
+        props.showAlert(event.target.innerText)
     }
 
-    const changeToLower=()=>{
+    const changeToLower=(event)=>{
         let lower=text.toLowerCase()
         setText(lower)
+        props.showAlert(event.target.innerText)
     }
 
     
@@ -72,18 +74,24 @@ export default function Form(props){
     }
     const onChangingValue=(event)=>{
         setText(event.target.value)
-        console.log(text)
     }
 
-    const clearTextArea=()=>{
+    const clearTextArea=(event)=>{
         setText("")
+        props.showAlert(event.target.innerText)
     }
 
-    const copyText=()=>
+    const copyText=(event)=>
     {
+        if(text.length===0){
+            props.showAlert("empty")
+        }
+        else{
         let box=document.getElementById('myBox');
         box.select()
         navigator.clipboard.writeText(box.value)
+        props.showAlert(event.target.innerText)
+        }
 
         // Or we can do like this in a easy way 
         // let str=text
