@@ -54,7 +54,6 @@ export function TextAreaRC() {
   };
 
   const showAlert = (operationType) => {
-    console.log(operationType)
     if (operationType === "Change to upperCase") {
       setAlert({
         message: "Text has been changed to UpperCase",
@@ -122,7 +121,9 @@ export function TextAreaRC() {
         changeMode={changeMode}
         showAlert={showAlert}
         />
-      <Alerts message="This is a message" alert={alert} />
+        <div style={{height:"60px"}}>
+      <Alerts message="This is a message" alert={alert} /> 
+      </div>
 
       <div className="container">
             

@@ -6,8 +6,9 @@ if(props.alert===null){
 }
   return (
     <>
+    
       <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
-        <strong>{props.alert.type} </strong>{props.alert.message}
+        <strong>{props.alert.type.charAt(0).toUpperCase()+props.alert.type.slice(1)} </strong>{props.alert.message}
         <button
           type="button"
           className="btn-close"
