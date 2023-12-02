@@ -1,9 +1,11 @@
 import "./App.css";
 import NavBar from "./Components/NavBar";
 import Form from "./Components/Forms";
+import About from "./Components/AboutUs";
 import { Alerts } from "./Components/Setalerts";
 // import TempFile from './Components/TempFile';
 import { useState } from "react";
+import { BrowserRouter, Routes,Route} from "react-router-dom";
 
 // const jsondata={
 //   name:"Hemamth",
@@ -24,7 +26,7 @@ import { useState } from "react";
 export function TextAreaRC() {
   // const [darkmode,setdarkmode]=useState(false)
   const [mode, setmode] = useState("light");
-  const [alert, setAlert]=useState(null)
+  const [alert, setAlert] = useState(null)
 
   const changeMode = (event) => {
     if (mode === "light") {
@@ -35,8 +37,8 @@ export function TextAreaRC() {
       setmode("dark");
       event.target.innerText = "Light";
       setAlert({
-        message:"Theme has been successfully changed to Dark",
-        type:"light"
+        message: "Theme has been successfully changed to Dark",
+        type: "light"
       })
     } else if (mode === "dark") {
       const body = document.body;
@@ -45,44 +47,42 @@ export function TextAreaRC() {
       setmode("light");
       event.target.innerText = "Dark";
       setAlert({
-        message:"Theme has been successfully changed to Light",
-        type:"dark"
+        message: "Theme has been successfully changed to Light",
+        type: "dark"
       })
     }
   };
 
-  const showAlert=(operationType)=>{
-    console.log(operationType)
-    if(operationType==="Change to upperCase"){
+  const showAlert = (operationType) => {
+    if (operationType === "Change to upperCase") {
       setAlert({
-        message:"Text has been changed to UpperCase",
-        type:"success"
+        message: "Text has been changed to UpperCase",
+        type: "success"
       })
     }
-    else if(operationType==="Change to LowerCase"){
+    else if (operationType === "Change to LowerCase") {
       setAlert({
-        message:"Text has been changed to LowerCase",
-        type:"success"
+        message: "Text has been changed to LowerCase",
+        type: "success"
       })
     }
 
-    else if(operationType==="Clear Text"){
+    else if (operationType === "Clear Text") {
       setAlert({
-        message:"Text has been Cleared",
-        type:"warning"
+        message: "Text has been Cleared",
+        type: "warning"
       })
     }
-    else if(operationType==="empty"){
+    else if (operationType === "empty") {
       setAlert({
-        message:"Text box is empty. Please write something",
-        type:"danger"
+        message: "Text box is empty. Please write something",
+        type: "danger"
       })
     }
-    else if(operationType==="Copy Text")
-    {
+    else if (operationType === "Copy Text") {
       setAlert({
-        message:"Text has been copied to ClipBoard",
-        type:"success"
+        message: "Text has been copied to ClipBoard",
+        type: "success"
       })
     }
 
@@ -113,19 +113,33 @@ export function TextAreaRC() {
 
   return (
     <>
+        <BrowserRouter>
       <NavBar
         NavBarTitle="Text-Utils"
         link="https://www.google.com/"
         mode={mode}
         changeMode={changeMode}
         showAlert={showAlert}
-      />
-      <Alerts message="This is a message" alert={alert} />
-      <div className="container">
-
-        <Form textAreaTitle="Enter your text to analyze" mode={mode} showAlert={showAlert}/>
-        {/* <button type="button" className="btn btn-dark" onClick={SetdarkMode}>Dark</button> */}
+        />
+        <div style={{height:"60px"}}>
+      <Alerts message="This is a message" alert={alert} /> 
       </div>
+
+      <div className="container">
+            
+        <Routes>
+          {/* It's better to use Exact path rather than path because react checks for partial links also. means ex: 
+          there are two paths 1./home  2./home/about.  so if we want 2nd component to render and has specified correct
+          path. react will render 1st component. As it checks for partial text
+          */}
+            <Route exact path="/" element={<Form textAreaTitle="Enter your text to analyze" mode={mode} showAlert={showAlert} />}/>
+            <Route exact path="/home" element={<Form textAreaTitle="Enter your text to analyze" mode={mode} showAlert={showAlert} />}/>
+            <Route path="/about" element={<About />}/>
+            </Routes>
+
+        {/* <button type="button" className="btn btn-dark" onClick={SetdarkMode}>Dark</button> */}
+      </div >
+          </BrowserRouter>
     </>
   );
 }

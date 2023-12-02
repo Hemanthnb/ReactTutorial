@@ -32,7 +32,7 @@ export default function Form(props){
         backgroundColor:"black"}
     }
 
-    const[text,setText]=useState("Enter text here...")
+    const[text,setText]=useState("")
 
     const setCounts=()=>{
         TotalUpperCase()
@@ -41,15 +41,23 @@ export default function Form(props){
 
     
     const changeToUpper=(event)=>{
+        if(text.length===0){
+            props.showAlert("empty")
+        }
+        else{
         let upper=text.toUpperCase()
         setText(upper)
         props.showAlert(event.target.innerText)
+        }
     }
 
     const changeToLower=(event)=>{
+        if(text.length===0){
+            props.showAlert("empty")
+        }else{
         let lower=text.toLowerCase()
         setText(lower)
-        props.showAlert(event.target.innerText)
+        props.showAlert(event.target.innerText)}
     }
 
     
@@ -77,8 +85,11 @@ export default function Form(props){
     }
 
     const clearTextArea=(event)=>{
+        if(text.length===0){
+            props.showAlert("empty")
+        }else{
         setText("")
-        props.showAlert(event.target.innerText)
+        props.showAlert(event.target.innerText)}
     }
 
     const copyText=(event)=>
@@ -104,7 +115,7 @@ export default function Form(props){
     <div className="mb-3">
     <h1>{props.textAreaTitle}</h1>
   <label htmlFor="myBox" className="form-label"></label>
-  <textarea className="form-control" id="myBox" rows="10" cols={"10"} value={text} onChange={onChangingValue} style={obj}></textarea>
+  <textarea className="form-control" id="myBox"  placeholder="Enter your text here..."rows="10" cols={"10"} value={text} onChange={onChangingValue} style={obj}></textarea>
   <br/>
   <button type="button" className="btn btn-primary" onClick={changeToUpper}>Change to upperCase</button>
   <button type="button" className="btn btn-primary" style={{marginLeft:"10px"}} onClick={changeToLower}>
@@ -121,7 +132,7 @@ export default function Form(props){
 <div>
     <h3>Text Summary</h3>
      <p style={{display:"inline",marginRight:"10px"}}>Total number of character : <b>{text.length}</b></p>   
-     <p style={{display:"inline",marginRight:"10px"}}>Total number of words : <b>{text.split(" ").length-1}</b></p>   
+     <p style={{display:"inline",marginRight:"10px"}}>Total number of words : <b>{text.trim().split(/\s+/).length}</b></p>   
      <p style={{display:"inline", marginRight:"10px"}}>Total time taken for one word :<b>{((text.split(" ").length-1)*0.008).toFixed(2)}</b> mins</p>   
      <div>
      <p style={{display:"inline"}}>Total Number Of UpperCase : <b>{upperCount}</b></p>
