@@ -131,12 +131,12 @@ export default function Form(props){
 </div>
 <div>
     <h3>Text Summary</h3>
-     <p style={{display:"inline",marginRight:"10px"}}>Total number of character : <b>{text.length}</b></p>   
-     <p style={{display:"inline",marginRight:"10px"}}>Total number of words : <b>{text.trim().split(/\s+/).length}</b></p>   
-     <p style={{display:"inline", marginRight:"10px"}}>Total time taken for one word :<b>{((text.split(" ").length-1)*0.008).toFixed(2)}</b> mins</p>   
+     <p style={{marginRight:"10px"}}>Total number of character : <b>{text.length}</b></p>   
+     <p style={{marginRight:"10px"}}>Total number of words : <b>{text.trim().split(/\s+/).length}</b></p>   
+     <p style={{ marginRight:"10px"}}>Total time taken for one word :<b>{((text.split(" ").length-1)*0.008).toFixed(2)}</b> mins</p>   
      <div>
-     <p style={{display:"inline"}}>Total Number Of UpperCase : <b>{upperCount}</b></p>
-     <p style={{display:"inline",marginLeft:"10px"}}>Total Number Of Lowercase : <b>{lowerCount}</b></p>
+     <p>Total Number Of UpperCase : <b>{upperCount}</b></p>
+     <p>Total Number Of Lowercase : <b>{lowerCount}</b></p>
      </div>
 </div>
     </>
