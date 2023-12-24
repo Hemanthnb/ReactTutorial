@@ -29,23 +29,25 @@ export function TextAreaRC() {
   const [alert, setAlert] = useState(null)
 
   const changeMode = (event) => {
-    if (mode === "light") {
+    let modeID=document.getElementById("modeLabel");
+    if (mode === "light"||modeID.innerText==='light') {
+      console.log(modeID.innerText)
       const body = document.body;
       body.style.backgroundColor = "black";
       body.style.color = "white";
 
       setmode("dark");
-      event.target.innerText = "Light";
+      modeID.innerText = "Light";
       setAlert({
         message: "Theme has been successfully changed to Dark",
         type: "light"
       })
-    } else if (mode === "dark") {
+    } else if (mode === "dark"||modeID.innerText==='dark') {
       const body = document.body;
       body.style.backgroundColor = "white";
       body.style.color = "black";
       setmode("light");
-      event.target.innerText = "Dark";
+      modeID.innerText = "Dark";
       setAlert({
         message: "Theme has been successfully changed to Light",
         type: "dark"
