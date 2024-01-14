@@ -1,0 +1,23 @@
+@media(max-width: 782px) {
+  
+    .buttonsContainer{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin: auto;
+      width: 68%;
+    }
+    button{
+        margin-left: 10px;
+        margin-bottom: 5px;
+    }
+    #mainContainer{
+        position: relative;
+        top:25px;
+    }
+
+    .summaryContainer{
+        position: relative;
+        top: 20px;
+    }
+}

@@ -1,4 +1,5 @@
 import React,{useState} from "react"
+import './Responsive.css'
 
 let upperCount=0,lowerCount=0
 export default function Form(props){
@@ -112,11 +113,14 @@ export default function Form(props){
     
     return(
     <>
-    <div className="mb-3">
+    <div className="mb-3" id="mainContainer">
     <h1>{props.textAreaTitle}</h1>
   <label htmlFor="myBox" className="form-label"></label>
   <textarea className="form-control" id="myBox"  placeholder="Enter your text here..."rows="10" cols={"10"} value={text} onChange={onChangingValue} style={obj}></textarea>
   <br/>
+
+<div className="buttonsContainer">
+
   <button type="button" className="btn btn-primary" onClick={changeToUpper}>Change to upperCase</button>
   <button type="button" className="btn btn-primary" style={{marginLeft:"10px"}} onClick={changeToLower}>
   Change to LowerCase
@@ -127,16 +131,19 @@ export default function Form(props){
 <button type="button" className="btn btn-primary" style={{marginLeft:"10px"}} onClick={copyText}>
   Copy Text
 </button>
-
 </div>
-<div>
+</div>
+
+<div className="summaryContainer">
     <h3>Text Summary</h3>
+    <div className="buttonsContainer">
      <p style={{marginRight:"10px"}}>Total number of character : <b>{text.length}</b></p>   
      <p style={{marginRight:"10px"}}>Total number of words : <b>{text.trim().split(' ').length}</b></p>   
      <p style={{ marginRight:"10px"}}>Total time taken for one word :<b>{((text.split(" ").length-1)*0.008).toFixed(2)}</b> mins</p>   
      <div>
      <p>Total Number Of UpperCase : <b>{upperCount}</b></p>
      <p>Total Number Of Lowercase : <b>{lowerCount}</b></p>
+     </div>
      </div>
 </div>
     </>
